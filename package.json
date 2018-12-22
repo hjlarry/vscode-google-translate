@@ -4,20 +4,27 @@
 	"description": "a google translate for chinese user view source code",
 	"version": "0.0.1",
 	"engines": {
-		"vscode": "^1.30.0"
+		"vscode": "^1.20.0"
 	},
 	"categories": [
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.translate"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"command": "extension.translate",
+				"title": "Google Translate"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.translate",
+				"key": "ctrl+t",
+				"when": "editorTextFocus"
 			}
 		]
 	},
