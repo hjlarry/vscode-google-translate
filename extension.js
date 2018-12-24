@@ -14,11 +14,17 @@ function activate(context) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "google-translate" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
+	let excludeSpecial = function (s) {
+		// 去掉转义字符
+		s = s.replace(/[\'\"\\\/\b\f\n\r\t]/g, ' ');
+		// 去掉特殊字符
+		s = s.replace(/[\@\#\$\%\^\&\*\(\)\{\}\:\"\L\<\>\?\[\]]/, ' ');
+		return s;
+	};
+
+	// The command has been defined in the package.json file Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('extension.translate', function () {
-		// The code you place here will be executed every time your command is executed
 		let editor = vscode.window.activeTextEditor;
 		if (!editor) {
 			return;
@@ -26,6 +32,7 @@ function activate(context) {
 		let document = editor.document;
 		let selection = editor.selection;
 		let text = document.getText(selection);
+		text = excludeSpecial(text);
 		let url = 'https://translate.google.cn/translate_a/single?client=gtx&sl=auto&tl=zh-CN&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&tk=514069.514069&q=' + text;
 		request(url, function (error, response, body) {
 			if (response && response.statusCode == 200) {
