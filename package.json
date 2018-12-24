@@ -1,15 +1,17 @@
 {
 	"name": "google-translate",
-	"displayName": "google translate",
-	"description": "a google translate for chinese user view source code",
+	"displayName": "谷歌翻译",
+	"description": "a google translate extension for chinese user view source code",
 	"publisher": "hjlarry",
-	"version": "0.0.1",
+	"repository": "https://github.com/hjlarry/vscode-google-translate",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.20.0"
 	},
 	"categories": [
 		"Other"
 	],
+	"icon": "icon.png",
 	"activationEvents": [
 		"onCommand:extension.translate"
 	],
