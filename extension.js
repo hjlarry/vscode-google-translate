@@ -30,10 +30,10 @@ function activate(context) {
 		request(url, function (error, response, body) {
 			if (response && response.statusCode == 200) {
 				let result = JSON.parse(body);
-				vscode.window.showInformationMessage(result[0][0][0]);
+				vscode.window.setStatusBarMessage(result[0][0][0]);
 			} else {
 				console.log('error:', error);
-				vscode.window.showInformationMessage(error);
+				vscode.window.showWarningMessage(error);
 			}
 		});
 	});
